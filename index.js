@@ -43,8 +43,8 @@ function firstRepeatedElement(arr) {
     }
     return null;
 }
-console.log(firstRepeatedElement([1, 2, 3, 4, 5, 2, 4, 5, 3, 2]));
-console.log(countWords("hello world hello"));
+// console.log(firstRepeatedElement([1, 2, 3, 4, 5, 2, 4, 5, 3, 2]));
+// console.log(countWords("hello world hello"));
 //console.log(flattenReduce([1,2,[3,[4]],5]));
 
 function countWord(str, word) {
@@ -56,7 +56,7 @@ function countWord(str, word) {
     }
     return count;
 }
-console.log(countWord('sathishkumar Durairaj', 'a'));
+//console.log(countWord('sathishkumar Durairaj', 'a'));
 
 
 
@@ -68,7 +68,7 @@ function factorial(num) {
     }
 }
 
-console.log(factorial(5));
+//console.log(factorial(5));
 
 function reverseString(str) {
     const _value = str.trim().split(' ');
@@ -81,7 +81,7 @@ function reverseWords(str) {
     return str.trim().split(' ').reverse().join(' ');
 }
 
-//
+//currying
 function makeSandwich(bread){
     return function peanutButter(butter){
         return function jelly(jelly){
@@ -151,17 +151,83 @@ function twoSum(nums, target){
    }
 }
 
+function pushAllZeroLast(nums){
+    const modifiedArray =[];
+    let count = 0;
+    for(let i=0; i<nums.length; i++){
+        if(nums[i] !== 0){
+            nums[count++] = nums[i];
+        }
+    }
+
+    while(count < nums.length){
+        nums[count++] = 0;
+    }
+    return nums;
+}
+
+
+function findSecondLargestNum(arr){    
+    if(arr.length < 2) return null;
+    let first = -1, second = -1;
+
+    for(let num of arr){
+        if(num > first){
+            second = first;
+            first = num;
+        } else if(num > second && num < first){
+            second = num;
+        }
+    }
+    return second === -1 ? null : second;
+}
+
+// Promise.resolve().then(()=>{
+//     //console.log(findSecondLargestNum(["j",2,0,35,23,-1]));
+//     try{
+//         'ajs'.toFixed(2);
+//     }catch(err){
+//         throw new Error("Invalid input");
+//     }
+// }).catch((err)=>{
+//     console.error(err);
+// });
+const promise3 = new Promise((resolve,reject)=>{
+        setTimeout(reject, 0,'foo');
+    })
+
+Promise.allSettled([
+    Promise.resolve(1),
+    Promise.reject('2'),
+    promise3
+]).then((values)=>{
+    console.log(values);
+}).catch((err)=>{
+    console.error(err);
+});
+
+function checkPalindrome(str) {
+    const cleaned = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    const reversed = cleaned.split('').reverse().join('');
+    return cleaned === reversed;
+}
+
+console.log("pal",checkPalindrome("madama"))
+
+console.log(findSecondLargestNum([10,10,10]));
+//console.log(pushAllZeroLast([0,2,3,0,4,5]));
+
 //console.log("isAnagram", isAnagram('jam','maj'));
 
-console.log("multiple missing values",findMissingValues([1, 2, 4, 5, 6, 8, 10], 10));
+// console.log("multiple missing values",findMissingValues([1, 2, 4, 5, 6, 8, 10], 10));
 
-console.log("Missing Value", findMissingNumber([1,2,4,5],5));
+// console.log("Missing Value", findMissingNumber([1,2,4,5],5));
 
-console.log(rangeOfNumber(1,15));
+// console.log(rangeOfNumber(1,15));
 
-console.log(makeSandwich('White bread')('unsalted butter')('Straberry'));
+// console.log(makeSandwich('White bread')('unsalted butter')('Straberry'));
 
-console.log(reverseWords("Vahini is my daughter"));
-console.log(reverseString("vahini is my daughter"));
+// console.log(reverseWords("Vahini is my daughter"));
+// console.log(reverseString("vahini is my daughter"));
 
 module.exports = { firstNonRepeatedChar, flattenReduce, countWords, firstRepeatedElement, countWord, factorial };
